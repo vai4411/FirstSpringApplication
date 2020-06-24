@@ -33,4 +33,11 @@ public class GreetingService implements IGreetingService {
         greeting.setCounter(counter.incrementAndGet());
         greetingRepository.save(greeting);
     }
+
+    @Override
+    public Greeting display(long id) {
+        Optional<Greeting> greeting = greetingRepository.findById(id);
+        Greeting greeting1 = greeting.get();
+        return greeting1;
+    }
 }

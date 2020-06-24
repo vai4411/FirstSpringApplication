@@ -27,4 +27,9 @@ public class GreetingController {
     public void add(@RequestBody Greeting greeting) {
         greetingService.save(greeting);
     }
+
+    @GetMapping("/{id}")
+    public Greeting display(@PathVariable int id) {
+        return greetingService.display(id);
+    }
 }
