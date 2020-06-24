@@ -8,4 +8,6 @@ public interface IGreetingService {
     Greeting getGreetingById(long id);
     void save(Greeting greeting);
     Greeting display(long id);
+    void update(long id,Greeting greeting);
+    void delete(long id);
 }

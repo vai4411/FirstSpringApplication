@@ -32,4 +32,9 @@ public class GreetingController {
     public Greeting display(@PathVariable int id) {
         return greetingService.display(id);
     }
+
+    @PutMapping("/put/{id}")
+    public void update(@PathVariable int id,@RequestBody Greeting greeting) {
+        greetingService.update(id,greeting);
+    }
 }
