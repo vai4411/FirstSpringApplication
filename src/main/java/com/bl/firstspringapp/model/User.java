@@ -1,5 +1,9 @@
 package com.bl.firstspringapp.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 public class User {
     private String firstName;
     private String lastName;

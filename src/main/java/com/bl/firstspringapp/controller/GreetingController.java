@@ -1,22 +1,30 @@
 package com.bl.firstspringapp.controller;
 
 import com.bl.firstspringapp.model.Greeting;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.concurrent.atomic.AtomicLong;
+import com.bl.firstspringapp.model.User;
+import com.bl.firstspringapp.service.IGreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/path")
+@RequestMapping("/greeting")
 public class GreetingController {
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
 
-    @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(template,name));
+    @Autowired
+    IGreetingService greetingService;
 
+    @GetMapping("")
+    public Greeting greeting(@RequestBody Greeting greeting) {
+        return greetingService.addGreeting(greeting);
+    }
+
+    @GetMapping("/display/{id}")
+    public Greeting getGreeting(@PathVariable int id) {
+        return greetingService.getGreetingById(id);
+    }
+
+    @PostMapping("")
+    public void add(@RequestBody Greeting greeting) {
+        greetingService.save(greeting);
     }
 }
